@@ -27,4 +27,7 @@ resources:
   - name: project1-hdi-container
     type: com.sap.xs.hdi-container
     properties:
-      hdi-container-name: ${service-name}
+      hdi-container-name: '${service-name}'
+    parameters:
+      service: hanatrial
+      service-plan: hdi-shared

@@ -1,7 +1,7 @@
-namespace my.bookshop;
+namespace project1;
 
-entity Books {
+entity Sales {
   key ID : Integer;
-  title  : String;
-  stock  : Integer;
+  region  : String;
+  amount  : Integer;
 }
