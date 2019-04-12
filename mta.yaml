@@ -1,5 +1,5 @@
 ID: project1
-_schema-version: "2.1"
+_schema-version: '2.1'
 description: test full HDI app
 version: 0.0.1
 modules:
@@ -20,9 +20,37 @@ modules:
     provides:
       - name: srv_api
         properties:
-          url: ${default-url}
+          url: '${default-url}'
     requires:
       - name: project1-hdi-container
+      - name: srv_api
+        group: destinations
+        properties:
+          name: srv_api
+          url: '~{url}'
+  - name: xsjs
+    type: nodejs
+    path: xsjs
+    provides:
+      - name: xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: project1-hdi-container
+      - name: project1-db
+
+  - name: web
+    type: html5
+    path: web
+    parameters:
+       disk-quota: 256M
+       memory: 256M
+    build-parameters:
+       builder: grunt
+    requires:
+     - name: uaa_project1
+     - name: dest_project1
+
 resources:
   - name: project1-hdi-container
     type: com.sap.xs.hdi-container
@@ -31,3 +59,18 @@ resources:
     parameters:
       service: hanatrial
       service-plan: hdi-shared
+
+  - name: uaa_project1
+    parameters:
+       path: ./xs-security.json
+       service-plan: application
+       service: xsuaa
+    type: org.cloudfoundry.managed-service
+
+
+  - name: dest_project1
+    parameters:
+       service-plan: lite
+       service: destination
+    type: org.cloudfoundry.managed-service
+

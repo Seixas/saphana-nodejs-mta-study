@@ -1,6 +1,7 @@
-using project1 as myproj from '../db/data-model';
+using project1 as my from '../db/data-model';
 
 
 service CatalogService {
-    @readonly entity Sales as projection on myproj.Sales;
+	@cds.persistence.exists
+    @readonly entity Sales as projection on my.Sales;
 }

@@ -1,0 +1,12 @@
+{
+	"Type": "sap.ui.core.mvc.JSONView",
+	"controllerName": "project1.web.controller.View1",
+	"content": [{
+		"Type": "sap.m.App",
+		"pages": [{
+			"Type": "sap.m.Page",
+			"title": "{i18n>title}",
+			"content": []
+		}]
+	}]
+}
